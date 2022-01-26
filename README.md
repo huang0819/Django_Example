@@ -1,5 +1,5 @@
 # CILS技術之夜 - Django REST framework 簡介
 
-{%hackmd KumeV3S6Ska27Hb18Ee65Q %}
+[<span style="font-size:60px">簡介連結</span>](https://hackmd.io/@ASg74SVKQdGsI8e7A3fUQQ/BJxS4yhaK)
 
-{%hackmd YjTjiQFTToOWgP5AZvaE-w %}
+![](https://i.imgur.com/QT2rmVB.png)
