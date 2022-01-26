@@ -30,6 +30,9 @@ class Recipe(models.Model):
     class Meta:
         db_table = 'recipes'
 
+    def __str__(self):
+        return self.name
+
 
 class Menu(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -42,6 +45,9 @@ class Menu(models.Model):
     class Meta:
         db_table = 'menus'
 
+    def __str__(self):
+        return '%s_%s' % (self.user, self.eat_date)
+
 
 class MenuRecipe(models.Model):
     menu = models.ForeignKey(
@@ -53,3 +59,6 @@ class MenuRecipe(models.Model):
 
     class Meta:
         db_table = 'menu_recipe'
+
+    def __str__(self):
+        return '%s_%s' % (self.menu, self.recipe)
