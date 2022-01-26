@@ -1,0 +1,27 @@
+version: "3.9"
+   
+services:
+  db:
+    container_name: ${PROJECT_NAME}_db
+    image: mysql:5.7
+    volumes:
+      - "./mysql:/var/lib/mysql"
+    ports:
+      - "3306:3306"
+    restart: always
+    command: --character-set-server=utf8
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+  web:
+    container_name: ${PROJECT_NAME}_web
+    build: ./django
+    command: bash -c "cd ${PROJECT_NAME} && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - ../code:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
