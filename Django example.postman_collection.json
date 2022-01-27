@@ -1,0 +1,461 @@
+{
+	"info": {
+		"_postman_id": "6ac4cf26-a2fa-4853-8bad-c6dee2e0f9b2",
+		"name": "Django example",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "user_profiles",
+			"item": [
+				{
+					"name": "userProfiles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local_url}}/api/userProfiles",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"api",
+								"userProfiles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "userProfiles",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"birth_date\": \"1997-11-07\",\r\n    \"weight\": 57.1,\r\n    \"height\": 169.4,\r\n    \"user_id\": 4\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local_url}}/api/userProfiles/",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"api",
+								"userProfiles",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "userProfiles Copy",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"birth_date\": \"1997-11-11\",\r\n    \"weight\": 59.1,\r\n    \"height\": 169.4,\r\n    \"user_id\": 4\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local_url}}/api/userProfiles/3/",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"api",
+								"userProfiles",
+								"3",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "userProfiles",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"weight\": 59.3,\r\n    \"height\": 169.4\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local_url}}/api/userProfiles/6/",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"api",
+								"userProfiles",
+								"6",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "userProfiles Copy 2",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{local_url}}/api/userProfiles/3/",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"api",
+								"userProfiles",
+								"3",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "menus",
+			"item": [
+				{
+					"name": "menus",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local_url}}/api/menus?eat_date=2022-01-24",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"api",
+								"menus"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "3",
+									"disabled": true
+								},
+								{
+									"key": "eat_date",
+									"value": "2022-01-24"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "menus",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"eat_date\": \"2022-01-25\",\r\n    \"user_id\": 3,\r\n    \"recipe_ids\": [\r\n        1,2\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local_url}}/api/menus/",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"api",
+								"menus",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "menus",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{local_url}}/api/menus/",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"api",
+								"menus",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "menus",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{local_url}}/api/menus/8/",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"api",
+								"menus",
+								"8",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "recipes",
+			"item": [
+				{
+					"name": "recipes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local_url}}/api/recipes/",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"api",
+								"recipes",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "recipes",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"打拋豬\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local_url}}/api/recipes/",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"api",
+								"recipes",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "recipes",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"宮保雞丁\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local_url}}/api/recipes/9/",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"api",
+								"recipes",
+								"9",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "recipes",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{local_url}}/api/recipes/9/",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"api",
+								"recipes",
+								"9",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "menu_recipe",
+			"item": [
+				{
+					"name": "menuRecipe",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local_url}}/api/menuRecipes",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"api",
+								"menuRecipes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "menuRecipe Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"menu_id\": 2,\r\n    \"recipe_id\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local_url}}/api/menuRecipes",
+							"host": [
+								"{{local_url}}"
+							],
+							"path": [
+								"api",
+								"menuRecipes"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "helloWorld",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{local_url}}/api/helloWorld",
+					"host": [
+						"{{local_url}}"
+					],
+					"path": [
+						"api",
+						"helloWorld"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"user03@ncku.com' or 1 = 1 -- \",\r\n    \"username\": \"王小明\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local_url}}/login",
+					"host": [
+						"{{local_url}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "local_url",
+			"value": "http://localhost:8000",
+			"type": "string"
+		}
+	]
+}
