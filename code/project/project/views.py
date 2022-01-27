@@ -19,17 +19,14 @@ def login(request):
                 database=settings.DATABASES['default']['NAME'],
                 charset='utf8mb4',
                 user=settings.DATABASES['default']['USER'],
-                cursorclass=pymysql.cursors.DictCursor,  # 記錄結果，字典顯示
+                cursorclass=pymysql.cursors.DictCursor,
                 password=settings.DATABASES['default']['PASSWORD'],
             )
 
             cursor = conn.cursor()
             try:
-                # sql injection
                 sql = "select * from auth_user where email='%s' and username = '%s'" % (
                     email, username)
-
-                sql = 'Drop table to_delete'
                 cursor.execute(sql)
 
                 # defense sql injection
@@ -38,6 +35,9 @@ def login(request):
 
                 conn.commit()
                 result = cursor.fetchone()
+
+                cursor.close()
+                conn.close()
 
                 if result is not None:
                     return JsonResponse({
@@ -52,17 +52,18 @@ def login(request):
                         'sql': sql
                     }, status=422)
             except Exception as e:
-                print(e)
                 return JsonResponse({
                     'status': 1,
                     'sql': sql,
-                    'message': 'something wrong'
+                    'message': str(e)
                 }, status=500)
-
-            cursor.close()
-            conn.close()
 
         return JsonResponse({
             'status': 1,
             'message': 'input error'
         }, status=422)
+
+    return JsonResponse({
+        'status': 1,
+        'message': 'method not allowed'
+    }, status=405)

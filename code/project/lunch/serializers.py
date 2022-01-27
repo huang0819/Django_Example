@@ -53,11 +53,22 @@ class RecipeSerializer(serializers.ModelSerializer):
 
 
 class MenuRecipeSerializer(serializers.ModelSerializer):
-    recipes = RecipeSerializer(many=True, read_only=True)
+    recipe = RecipeSerializer(read_only=True)
+    recipe_id = serializers.PrimaryKeyRelatedField(
+        queryset=Recipe.objects.all(), write_only=True)
+    menu_id = serializers.PrimaryKeyRelatedField(queryset=Menu.objects.all())
 
     class Meta:
         model = MenuRecipe
-        fields = ['recipes']
+        fields = ['id', 'menu_id', 'recipe', 'recipe_id']
+
+    def create(self, validated_data):
+        menu = validated_data.pop('menu_id', None)
+        recipe = validated_data.pop('recipe_id', None)
+        menu_recipe = MenuRecipe.objects.create(
+            menu=menu, recipe=recipe, **validated_data)
+
+        return menu_recipe
 
 
 class MenuSerializer(serializers.ModelSerializer):
@@ -75,7 +86,6 @@ class MenuSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         user = validated_data.pop('user_id', None)
         recipe_ids = validated_data.pop('recipe_ids', None)
-        print(user)
         menu = Menu.objects.create(
             user=user, **validated_data)
 
