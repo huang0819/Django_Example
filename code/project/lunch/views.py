@@ -1,9 +1,10 @@
 # Create your views here.
-from lunch.models import UserProfile, Menu, Recipe
-from lunch.serializers import UserProfileSerializer, MenuSerializer, RecipeSerializer
+from lunch.models import UserProfile, Menu, Recipe, MenuRecipe
+from lunch.serializers import UserProfileSerializer, MenuSerializer, RecipeSerializer, MenuRecipeSerializer
 from django.db.models import Q
 
 from rest_framework import viewsets
+from rest_framework.views import APIView
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
@@ -34,15 +35,34 @@ class MenuViewSet(viewsets.ModelViewSet):
             query = query | Q(eat_date=eat_date) if query else Q(
                 eat_date=eat_date)
 
-        if query is None:
-            return queryset
-        else:
-            return queryset.filter(query)
+        return queryset if query is None else queryset.filter(query)
 
 
 class RecipeViewSet(viewsets.ModelViewSet):
     queryset = Recipe.objects.all()
     serializer_class = RecipeSerializer
+
+
+class MenuRecipeView(APIView):
+    def get(self, request, format=None):
+        menu_recipes = MenuRecipe.objects.all()
+        serialize = MenuRecipeSerializer(menu_recipes, many=True)
+
+        return Response({
+            'status': 0,
+            'data': serialize.data
+        })
+
+    def post(self, request, format=None):
+        data = request.data
+        serializer = MenuRecipeSerializer(data=data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+
+        return Response({
+            'status': 0,
+            'data': serializer.data
+        }, status=status.HTTP_201_CREATED)
 
 
 @api_view(['GET', 'POST'])
